@@ -2,40 +2,33 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDrawList, setSelectedShape } from '../app/main/contentSlice';
 import COMMON_CONST from '../common/constants';
+import * as commonUtils from '../common/commonUtils';
 
 function Contents() {
   const dispatch = useDispatch();
   const shapeType = useSelector((state) => state.header.shapeType);
   const drawList = useSelector((state) => state.content.drawList);
+  const selectedShape = useSelector((state) => state.content.selectedShape);
   const [isDrawing, setIsDrawing] = useState(false);
   const [drawObj, setDrawObj] = useState({});
-  // const [drawList, setDrawList] = useState(() => {
-  //   const localDrawList = localStorage.getItem('drawList');
-  //   if (localDrawList) {
-  //     return JSON.parse(localDrawList);
 
-  //   } else {
-  //     return [];
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   localStorage.setItem('drawList', JSON.stringify(drawList));
-  // }, [drawList]);
   let timer;
 
   // 그리기 시작
   const mouseDownContents = (event) => {
-    console.log(event);
     if (!isDrawing) {
       timer = setTimeout(() => {
+        // 컬러 랜덤 생성
         let drawStyle = {
           type: shapeType,
           orgY: event.pageY,
           orgX: event.pageX,
           style: {
             position: 'absolute',
-            border: '1px solid #aaa',
+            borderWidth: '3px',
+            borderStyle: 'solid',
+            borderColor: '#555',
+            backgroundColor: commonUtils.createRandomColorCode(),
             top: event.pageY,
             left: event.pageX,
             width: '1px',
@@ -108,7 +101,6 @@ function Contents() {
   
   const clickShape = (index) => {
     if (!isDrawing) {
-      console.log(index);
       dispatch(setSelectedShape(index));
     }
   }
@@ -116,9 +108,12 @@ function Contents() {
   return (
     <div className="contents" onMouseDown={mouseDownContents} onMouseMove={mouseMoveContents} onMouseUp={mouseUpContents}>
       {drawList.map((item, index) => (
-        <div key={index} style={item.style} onClick={() => {clickShape(index)}}/>
+        <div key={index} style={{...item.style, 
+          zIndex: index, 
+          borderColor: selectedShape === index ? '#00ccff' : item.style.borderColor
+        }} onClick={() => {clickShape(index)}}/>
       ))}
-      <div key="selected" style={drawObj.style} />
+      <div key="selected" style={{...drawObj.style, zIndex:9999}} />
     </div>
   );
 }
