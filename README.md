@@ -1,8 +1,22 @@
 # 웹 브라우저에서 사용할 수 있는 간단한 도형 그림판
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 소개
+웹브라우저에서 div를 활용한 도형(사각형, 원) 그리기 입니다.
 
-## 기능 명세
+## 개발 기간
+- 23.07.03 ~ 23.07.05
+
+## 개발 환경
+- OS : Windows
+- IDE : Visual Studio Code
+- Framework : React.js
+
+## Version
+- React 18.2.0
+- React-redux 8.1.1
+- redux-persist 6.0.0
+
+## 주요 기능
 
 - 마우스를 드래그해서 사각형을 그릴 수 있습니다.
 - 마우스를 드래그해서 원을 그릴 수 있습니다.
