@@ -17,7 +17,6 @@ function Contents() {
   const [drawObj, setDrawObj] = useState({});
 
   useEffect(() => {
-    console.log("effect", isSave);
     if (isSave) {
       dispatch(addDrawList(drawObj));
       setDrawObj({});
@@ -123,7 +122,6 @@ function Contents() {
           height: height + 'px'
         }
       });
-      console.log("mousemove", drawObj.style);
     }
   }
 
