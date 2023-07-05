@@ -9,7 +9,7 @@
 ## 개발 환경
 - OS : Windows
 - IDE : Visual Studio Code
-- Framework : React.js
+- Frontend library : React.js
 
 ## Version
 - React 18.2.0
