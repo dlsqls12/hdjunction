@@ -23,7 +23,6 @@ function Header() {
 
   const clickDelete = (event) => {
     if (window.confirm('선택된 도형을 삭제하시겠습니까?')) {
-      console.log(event);
       dispatch(removeDrawList(selectedShape));
     }
   }
@@ -39,13 +38,13 @@ function Header() {
       dispatch(setFirstIndex(selectedShape));
     }
   }
-  
+
   return (
     <div className="header">
       <button onClick={clickRect}>사각형</button>
       <button onClick={clickCircle}>원</button>
       <button onClick={clickClear}>초기화</button>
-      <button onClick={clickDelete}>삭제</button>
+      <button onClick={clickDelete}>선택삭제</button>
       <button onClick={clickMoveFront}>맨 앞으로</button>
       <button onClick={clickMoveBack}>맨 뒤로</button>
     </div>
